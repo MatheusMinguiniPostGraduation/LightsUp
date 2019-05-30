@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/darker_gray"
+        app:cardBackgroundColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_view_background_color">
+
+            <ImageView
+                android:id="@+id/current_led_on_image_view"
+                android:layout_width="237dp"
+                android:layout_height="132dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/grey_led" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="The image shows which LED is currently ON. If the LED is grey, it means that all LEDS are off"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@android:color/background_light"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/current_led_on_image_view"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.504" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/darker_gray"
+        app:cardBackgroundColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_view_background_color">
+
+            <Button
+                android:id="@+id/blue_led_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:background="@android:color/holo_blue_dark"
+                android:fontFamily="sans-serif"
+                android:onClick="turnBlueLedOn"
+                android:shadowColor="@android:color/holo_red_light"
+                android:text="Light up"
+                android:textColor="@android:color/background_light"
+                android:textColorHighlight="@android:color/holo_red_dark"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/green_led_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <Button
+                android:id="@+id/green_led_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_green_dark"
+                android:fontFamily="sans-serif"
+                android:onClick="turnGreenLedOn"
+                android:shadowColor="@android:color/holo_green_light"
+                android:text="Light up"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/yellow_led_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/blue_led_button"
+                app:layout_constraintTop_toTopOf="@+id/blue_led_button" />
+
+            <Button
+                android:id="@+id/yellow_led_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/holo_orange_light"
+                android:fontFamily="sans-serif"
+                android:onClick="turnYellowLedOn"
+                android:shadowColor="@android:color/holo_orange_light"
+                android:text="Light up"
+                android:textColor="@android:color/background_light"
+                android:textColorHighlight="@android:color/holo_orange_dark"
+                android:textColorLink="@android:color/holo_orange_light"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/green_led_button"
+                app:layout_constraintTop_toTopOf="@+id/green_led_button" />
+
+            <EditText
+                android:id="@+id/secondsEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Type in seconds"
+                android:inputType="number"
+                android:textColorHint="@android:color/background_light"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="How long should the led be on?"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.157"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="If you don't pick a time, the led you simply blink"
+                android:textColor="@android:color/background_light"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/secondsEditText"
+                app:layout_constraintTop_toBottomOf="@+id/secondsEditText" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Chronometer
+        android:id="@+id/stopWatchChronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:text="00:00:00"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+
+</android.support.constraint.ConstraintLayout>
