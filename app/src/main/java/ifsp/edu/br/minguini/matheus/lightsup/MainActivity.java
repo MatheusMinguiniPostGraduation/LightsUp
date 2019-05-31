@@ -7,9 +7,8 @@ import android.view.View;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,20 +27,33 @@ public class MainActivity extends AppCompatActivity {
         currentLedOn = findViewById(R.id.current_led_on_image_view);
         chronometer = findViewById(R.id.stopWatchChronometer);
         chronometer.setText("00:00:00");
+
         secondsEditText = findViewById(R.id.secondsEditText);
     }
 
-    void turnBlueLedOn(View view){
-        currentLedOn.setImageResource(R.drawable.blue_led);
-        setSecondsRemainingIntoScreen();
+    public void turnLedOn(View view){
+
+        int imagePath = pickTheRightImage(view.getId());
+
+        if(isTimeFilled()){
+            currentLedOn.setImageResource(imagePath);
+            setSecondsRemainingIntoScreen();
+
+            //Call Arduino here
+
+        }else{
+            Toast.makeText(this, R.string.time_required_message, Toast.LENGTH_LONG).show();
+        }
     }
 
-    void turnGreenLedOn(View view){
-        currentLedOn.setImageResource(R.drawable.green_led);
-    }
-
-    void turnYellowLedOn(View view){
-        currentLedOn.setImageResource(R.drawable.yellow_led);
+    private int pickTheRightImage(Integer buttonId) {
+        if(buttonId == R.id.blue_led_button){
+            return R.drawable.blue_led;
+        }else if(buttonId == R.id.yellow_led_button){
+            return R.drawable.yellow_led;
+        }else{
+            return R.drawable.green_led;
+        }
     }
 
     void setSecondsRemainingIntoScreen(){
@@ -53,19 +65,21 @@ public class MainActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
 
                 long time = SystemClock.elapsedRealtime() - chronometer.getBase();
-                int h   = (int)(time /3600000);
-                int m = (int)(time - h*3600000)/60000;
-                int s= (int)(time - h*3600000- m*60000)/1000 ;
-                String t = (h < 10 ? "0"+h: h)+":"+(m < 10 ? "0"+m: m)+":"+ (s < 10 ? "0"+s: s);
-                chronometer.setText(t);
+                int hour   = (int)(time / 3600000);
+                int minute = (int)(time - hour * 3600000) / 60000;
+                int second = (int)(time - hour * 3600000 - minute * 60000) / 1000 ;
+                String timeString = (hour < 10 ? "0" + hour: hour) + ":"+(minute < 10 ? "0" + minute: minute)+":"+ (second  < 10 ? "0" + second : second );
+                chronometer.setText(timeString);
 
                 if( chronometer.getText().toString().equalsIgnoreCase(timeTyped)){
                     chronometer.stop();
+                    chronometer.setText("00:00:00");
                     currentLedOn.setImageResource(R.drawable.grey_led);
                 }
             }
         });
 
+        chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
     }
 
@@ -78,5 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 TimeUnit.SECONDS.toSeconds(timeTypedLong) - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(timeTypedLong)));
 
         return hms;
+    }
+
+    private boolean isTimeFilled() {
+        return !secondsEditText.getText().toString().isEmpty();
     }
 }

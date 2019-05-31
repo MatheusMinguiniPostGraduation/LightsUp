@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">LightsUp</string>
+    <string name="app_name">Lights on</string>
+
+    <string name="blue_led">blue_led_button</string>
+    <string name="yellow_led">yellow_led_button</string>
+    <string name="green_led">green_led_button</string>
+
+    <string name="time_required_message">Please, select how long the LED ought to be on</string>
 </resources>
