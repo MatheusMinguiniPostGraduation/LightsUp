@@ -1,5 +1,6 @@
 package ifsp.edu.br.minguini.matheus.lightsup;
 
+import android.bluetooth.BluetoothAdapter;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView currentLedOn;
     Chronometer chronometer;
     EditText secondsEditText;
+
+
+    BluetoothAdapter bluetoothAdapter;
 
     Boolean running;
 
